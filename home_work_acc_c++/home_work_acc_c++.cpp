@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <vector>
 
-//习题3-3
+//习题3-4
 
 using namespace std;
 int main()
@@ -18,18 +18,19 @@ int main()
 	while (cin >> x) {
 		for (int i = 0; i < words.size(); i++) {
 			if (x == words[i]) {
-				boxes[i]++;
+				boxes[i] = x.length();
 				same_word = true;
 				break;
 			}
 		}
 		if (same_word == false) {
 			words.push_back(x);
-			boxes.push_back(1);
+			boxes.push_back(x.length());
 		}
 	}
-	for (int j = 0; j < boxes.size(); ++j) {
-		cout << words[j] << ":" << boxes[j] << endl;
-	}
+	sort(boxes.begin(), boxes.end(), greater<int>());
+	cout << "max length string's length:" << boxes[0] << endl;
+	int end = boxes.back();
+	cout << "min length string's length:" << end << endl;
 	return 0;
 }
