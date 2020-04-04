@@ -5,36 +5,31 @@
 #include <algorithm>
 #include <vector>
 
-//习题3-2 
+//习题3-3
 
 using namespace std;
 int main()
 {
-	double x;
-	vector<double> homework;
+	string x;
+	vector<string> words;
+	vector<double> boxes;
+	bool same_word = false;
+	cout << "Input a lot of words,enter ctr+z to end!" << endl;
 	while (cin >> x) {
-		homework.push_back(x);
-	}
-	typedef vector<double>::size_type vec_sz;
-	vec_sz size = homework.size();
-	int num;
-	if (size < 4) {
-		cout << "You must enter more than 4 numbers!" << endl;
-		return 1;
-	}else if(size % 4 != 0) {
-		cout << "Count of your numbers must be 4 "
-			"or multiple of 4!" << endl;
-		return 1;
-	}else {
-		num = size / 4;
-	}
-	sort(homework.begin(),homework.end(),greater<double>());
-	for (int i = 0; i < size; i+=num) {
-		for (int j = 0; j < num; ++j) {
-			cout << homework[i + j] << "," ;
+		for (int i = 0; i < words.size(); i++) {
+			if (x == words[i]) {
+				boxes[i]++;
+				same_word = true;
+				break;
+			}
 		}
-		cout <<  endl;
+		if (same_word == false) {
+			words.push_back(x);
+			boxes.push_back(1);
+		}
 	}
-	
+	for (int j = 0; j < boxes.size(); ++j) {
+		cout << words[j] << ":" << boxes[j] << endl;
+	}
 	return 0;
 }
